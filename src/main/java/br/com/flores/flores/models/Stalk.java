@@ -10,10 +10,22 @@ public class Stalk {
 	private LocalDateTime created_at = LocalDateTime.now();
 	private User author;
 	
+	public Stalk(String name, String description, User author) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.author = author;
+	}
+
+	public Stalk() {
+		
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(author, created_at, description, id_stalk, name);
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

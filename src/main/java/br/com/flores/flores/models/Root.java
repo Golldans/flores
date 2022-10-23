@@ -9,11 +9,19 @@ public class Root {
 	private String description;
 	private LocalDateTime created_at = LocalDateTime.now();
 	private User author;
-	
+
+	public Root(String name, String description, User author) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.author = author;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(author, created_at, description, id_root, name);
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -27,6 +35,7 @@ public class Root {
 				&& Objects.equals(description, other.description) && Objects.equals(id_root, other.id_root)
 				&& Objects.equals(name, other.name);
 	}
+
 	public Long getId_root() {
 		return id_root;
 	}

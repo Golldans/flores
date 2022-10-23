@@ -13,8 +13,16 @@ public class Flor {
 	private LocalDateTime created_at = LocalDateTime.now();
 	private User author;
 	
-	
-	
+	public Flor(String name, String scientific_name, String description, Stalk stalk, Root root, User author) {
+		super();
+		this.name = name;
+		this.scientific_name = scientific_name;
+		this.description = description;
+		this.stalk = stalk;
+		this.root = root;
+		this.author = author;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(author, created_at, description, id_flor, name, root, scientific_name, stalk);
