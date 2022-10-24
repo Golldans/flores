@@ -2,8 +2,18 @@ package br.com.flores.flores.models;
 
 import java.util.Objects;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "user", schema = "public")
 public class User {
-	private Long id_user;
+
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private String name;
 	private String email;
 	private String password;
@@ -21,7 +31,7 @@ public class User {
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(email, id_user, name, password);
+		return Objects.hash(email, id, name, password);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -32,14 +42,14 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		return Objects.equals(email, other.email) && Objects.equals(id_user, other.id_user) && Objects.equals(name, other.name)
+		return Objects.equals(email, other.email) && Objects.equals(id, other.id) && Objects.equals(name, other.name)
 				&& Objects.equals(password, other.password);
 	}
 	public Long getId() {
-		return id_user;
+		return id;
 	}
 	public void setId(Long id) {
-		this.id_user = id;
+		this.id = id;
 	}
 	public String getName() {
 		return name;

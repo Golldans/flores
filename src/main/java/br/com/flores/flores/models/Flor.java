@@ -3,16 +3,34 @@ package br.com.flores.flores.models;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name =  "flor", schema = "public")
 public class Flor {
-	private Long id_flor;
+	
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 	private String name;
 	private String scientific_name;
 	private String description;
+	@ManyToOne
+	@JoinColumn(name="id_stalk")
 	private Stalk stalk;
+	@ManyToOne
+	@JoinColumn(name="id_root")
 	private Root root;
-	private LocalDateTime created_at = LocalDateTime.now();
+	@ManyToOne
+	@JoinColumn(name="id_user")
 	private User author;
-	
+	private LocalDateTime created_at = LocalDateTime.now();
+
 	public Flor(String name, String scientific_name, String description, Stalk stalk, Root root, User author) {
 		super();
 		this.name = name;
@@ -23,9 +41,13 @@ public class Flor {
 		this.author = author;
 	}
 
+	public Flor() {
+		
+	}
+	
 	@Override
 	public int hashCode() {
-		return Objects.hash(author, created_at, description, id_flor, name, root, scientific_name, stalk);
+		return Objects.hash(author, created_at, description, id, name, root, scientific_name, stalk);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -37,16 +59,16 @@ public class Flor {
 			return false;
 		Flor other = (Flor) obj;
 		return Objects.equals(author, other.author) && Objects.equals(created_at, other.created_at)
-				&& Objects.equals(description, other.description) && Objects.equals(id_flor, other.id_flor)
+				&& Objects.equals(description, other.description) && Objects.equals(id, other.id)
 				&& Objects.equals(name, other.name) && Objects.equals(root, other.root)
 				&& Objects.equals(scientific_name, other.scientific_name) && Objects.equals(stalk, other.stalk);
 	}
 
 	public Long getId_flor() {
-		return id_flor;
+		return id;
 	}
 	public void setId_flor(Long id_flor) {
-		this.id_flor = id_flor;
+		this.id = id_flor;
 	}
 	public String getName() {
 		return name;
